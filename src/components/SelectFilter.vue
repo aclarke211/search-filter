@@ -1,34 +1,29 @@
 <template>
   <div :class="className">
-    <div class="filters">
-      <h2 class="filters__title data-title">Filters</h2>
-      <div class="select-filters">
+      <div class="filters">
         <div
           v-for="(selectFilter, selectKey) in selectFilters"
           :key="selectKey"
           class="select__container">
-            <h3>{{ selectFilter.label }}</h3>
-
+            <label :for="`select-filter-${selectKey}`">{{ selectFilter.label }}</label>
             <select
             class="select-box"
+            :id="`select-filter-${selectKey}`"
             v-model="selectFilter.current">
               <option
                 v-for="(singleOption, optionKey) in selectFilter.options"
                 :key="optionKey"
                 v-bind:value="singleOption.value"
-                :class="['select-option', `select-option-${optionKey}`]">
+                class="'select-option'"
+                :id="`select-option-${optionKey}`">
                   {{ singleOption.text }}
               </option>
             </select>
-
           </div>
       </div>
-    </div>
 
     <div class="filtered-data data">
-      <h2 class="filter-data__title data-title">Filtered Data</h2>
       <pre class="filtered-data__json data-json">{{ this.filteredData }}</pre>
-
     </div>
   </div>
 </template>
@@ -215,6 +210,50 @@ export default {
 
 <style lang="scss">
 .select-filter {
+  max-width: 100%;
+
+  .filters {
+    align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    transition: all .5s;
+
+    @media only screen and (min-width: 767px) {
+      flex-direction: row;
+    }
+
+    .select__container {
+      align-items: center;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      margin: 1rem 0;
+      max-width: 100%;
+
+      label {
+        flex: 1;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .select-box {
+        border-radius: 20rem;
+        font-size: .9rem;
+        margin: .75rem;
+        max-width: 100%;
+        padding: .75rem 2rem;
+        transition: all .5s;
+        width: 50%;
+
+        @media only screen and (min-width: 767px) {
+          margin: 1rem 2rem;
+          width: 15rem;
+        }
+      }
+    }
+  }
+
   .data {
     margin: 1rem 0;
 
@@ -226,23 +265,6 @@ export default {
 
     &-json {
       font-size: .8rem;
-    }
-  }
-
-  .filters {
-    .select-filters {
-      display: flex;
-
-      .select__container {
-        margin: .25rem 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .select-box {
-          margin: .5rem;
-        }
-      }
     }
   }
 }
