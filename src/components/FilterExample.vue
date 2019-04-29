@@ -46,23 +46,23 @@ export default {
     items: [
       {
         role: 'Admin',
-        fascias: 'JDSPORTS',
-        services: 'content_editor',
+        fascias: ['JDSPORTS', 'JDSPORTS_BE'],
+        services: ['content_editor'],
       },
       {
         role: 'User',
-        fascias: 'JDSPORTS',
-        services: 'content_editor',
+        fascias: ['JDSPORTS'],
+        services: ['content_editor', 'email_builder'],
       },
       {
         role: 'Admin',
-        fascias: 'JDSPORTS_BE',
-        services: 'content_editor',
+        fascias: ['JDSPORTS_BE'],
+        services: ['content_editor'],
       },
       {
         role: 'User',
-        fascias: 'JDSPORTS',
-        services: 'email_builder',
+        fascias: ['JDSPORTS'],
+        services: ['email_builder'],
       },
     ],
 
@@ -154,8 +154,24 @@ export default {
     filterByValue(key, currentValue, arrayToFilter) {
       let array = arrayToFilter;
       if (currentValue !== '') {
-        array = arrayToFilter.filter(item => item[key].toLowerCase()
-          === currentValue.toLowerCase());
+        array = arrayToFilter.filter((item) => {
+          if (Array.isArray(item[key])) {
+            let checkSubArray = false;
+
+            item[key].forEach((singleValue) => {
+              if (singleValue.toLowerCase() === currentValue.toLowerCase()) {
+                checkSubArray = true;
+                return true;
+              }
+              return false;
+            });
+            if (checkSubArray) {
+              return item[key];
+            }
+          } else {
+            return item[key].toLowerCase() === currentValue.toLowerCase();
+          }
+        });
       }
       return array;
     },
