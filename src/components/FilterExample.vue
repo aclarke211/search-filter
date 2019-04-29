@@ -171,6 +171,8 @@ export default {
           } else {
             return item[key].toLowerCase() === currentValue.toLowerCase();
           }
+
+          return false;
         });
       }
       return array;
