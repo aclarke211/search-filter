@@ -182,6 +182,19 @@ export default {
       return array;
     },
   },
+
+  searchFilter() {
+    // return this.search ? this.items.filter(item => {
+    //     let match = false
+    //     for (let key in item) {
+    //       console.log(item[key]);
+    //       if (item[key].toLowerCase().includes(this.search.toLowerCase())) {
+    //         return true
+    //       }
+    //     }
+    //   })
+    //   : this.items
+  },
 };
 </script>
 
