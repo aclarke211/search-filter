@@ -100,7 +100,7 @@ export default {
         ],
       },
       {
-        label: 'Services',
+        label: 'Service',
         current: '',
         options: [
           {
@@ -121,8 +121,28 @@ export default {
   }),
 
   computed: {
+    selectedRole() {
+      return this.getSelectedValue('Role');
+    },
+
+    selectedFascia() {
+      return this.getSelectedValue('Fascia');
+    },
+
+    selectedService() {
+      return this.getSelectedValue('Service');
+    },
+
     filteredData() {
       return this.items;
+    },
+  },
+
+  methods: {
+    getSelectedValue(value) {
+      const toReturn = this.selectFilters.filter(selectData => selectData.label === value);
+
+      return toReturn[0].current;
     },
   },
 };
