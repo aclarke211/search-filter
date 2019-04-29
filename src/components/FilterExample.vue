@@ -46,23 +46,23 @@ export default {
     items: [
       {
         role: 'Admin',
-        fascia: 'JDSPORTS',
-        services: ['Content Editor'],
+        fascias: 'JDSPORTS',
+        services: 'content_editor',
       },
       {
         role: 'User',
-        fascia: 'JDSPORTS',
-        services: ['Content Editor'],
+        fascias: 'JDSPORTS',
+        services: 'content_editor',
       },
       {
         role: 'Admin',
-        fascia: 'JDSPORTS_BE',
-        services: ['Content Editor'],
+        fascias: 'JDSPORTS_BE',
+        services: 'content_editor',
       },
       {
         role: 'User',
-        fascia: 'JDSPORTS',
-        services: ['Email Builder'],
+        fascias: 'JDSPORTS',
+        services: 'email_builder',
       },
     ],
 
@@ -134,7 +134,13 @@ export default {
     },
 
     filteredData() {
-      return this.items;
+      let filteredArray = this.items;
+
+      filteredArray = this.filterByValue('role', this.selectedRole, filteredArray);
+      filteredArray = this.filterByValue('fascias', this.selectedFascia, filteredArray);
+      filteredArray = this.filterByValue('services', this.selectedService, filteredArray);
+
+      return filteredArray;
     },
   },
 
@@ -143,6 +149,15 @@ export default {
       const toReturn = this.selectFilters.filter(selectData => selectData.label === value);
 
       return toReturn[0].current;
+    },
+
+    filterByValue(key, currentValue, arrayToFilter) {
+      let array = arrayToFilter;
+      if (currentValue !== '') {
+        array = arrayToFilter.filter(item => item[key].toLowerCase()
+          === currentValue.toLowerCase());
+      }
+      return array;
     },
   },
 };
