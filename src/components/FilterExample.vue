@@ -32,7 +32,7 @@
 
     <div class="filtered-data data">
       <h2 class="filter-data__title data-title">Filtered Data</h2>
-      <p class="filtered-data__json data-json">{{ this.filteredData }}</p>
+      <pre class="filtered-data__json data-json">{{ this.filteredData }}</pre>
 
     </div>
   </div>
@@ -150,7 +150,7 @@ export default {
 
 <style lang="scss">
   .data {
-    margin: 3rem 0;
+    margin: 1rem 0;
 
     &-title {
       border-bottom: 2px solid slategrey;
@@ -168,7 +168,7 @@ export default {
       display: flex;
 
       .select__container {
-        margin: 1rem;
+        margin: .25rem 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
