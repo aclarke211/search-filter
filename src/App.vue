@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <h1 class="title">Filter / Search</h1>
-    <FilterExample />
+    <SelectFilter />
   </div>
 </template>
 
 <script>
-import FilterExample from '@/components/FilterExample.vue';
+import SelectFilter from '@/components/SelectFilter.vue';
 
 export default {
   name: 'app',
 
   components: {
-    FilterExample,
+    SelectFilter,
   },
 };
 </script>

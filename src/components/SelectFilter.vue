@@ -1,10 +1,5 @@
 <template>
-  <div class="filter__outer">
-    <div class="default-data data">
-      <h2 class="default-data__title data-title">Default Data</h2>
-      <p class="default-data__json data-json">{{ this.items }}</p>
-    </div>
-
+  <div :class="className">
     <div class="filters">
       <h2 class="filters__title data-title">Filters</h2>
       <div class="select-filters">
@@ -40,88 +35,108 @@
 
 <script>
 export default {
-  name: 'FilterExample',
+  name: 'SelectFilter',
+
+  props: {
+    /**
+    * The original data that will be filterd by the component
+    */
+    dataToFilter: {
+      type: Array,
+      default: () => ([
+        {
+          username: 'jhbjkbjh@test.com',
+          role: 'Admin',
+          fascias: ['JDSPORTS', 'JDSPORTS_BE'],
+          services: ['content_editor'],
+        },
+        {
+          username: 'bjhiiujb@test.com',
+          role: 'User',
+          fascias: ['JDSPORTS'],
+          services: ['content_editor', 'email_builder'],
+        },
+        {
+          username: 'opjjbvghc@test.com',
+          role: 'Admin',
+          fascias: ['JDSPORTS_BE'],
+          services: ['content_editor'],
+        },
+        {
+          username: 'dfxgvbbhj@test.com',
+          role: 'User',
+          fascias: ['JDSPORTS'],
+          services: ['email_builder'],
+        },
+      ]),
+    },
+
+    /**
+    * The select boxes used to filter the data
+    */
+    selectFilters: {
+      type: Array,
+      default: () => ([
+        {
+          label: 'Role',
+          current: '',
+          options: [
+            {
+              text: 'All',
+              value: '',
+            },
+            {
+              text: 'Admin',
+              value: 'admin',
+            },
+            {
+              text: 'User',
+              value: 'user',
+            },
+          ],
+        },
+        {
+          label: 'Fascia',
+          current: '',
+          options: [
+            {
+              text: 'All',
+              value: '',
+            },
+            {
+              text: 'JD Sports (GB)',
+              value: 'JDSPORTS',
+            },
+            {
+              text: 'JD Sports (BE)',
+              value: 'JDSPORTS_BE',
+            },
+          ],
+        },
+        {
+          label: 'Service',
+          current: '',
+          options: [
+            {
+              text: 'All',
+              value: '',
+            },
+            {
+              text: 'Content Editor',
+              value: 'content_editor',
+            },
+            {
+              text: 'Email Builder',
+              value: 'email_builder',
+            },
+          ],
+        },
+      ]),
+    },
+  },
 
   data: () => ({
-    items: [
-      {
-        role: 'Admin',
-        fascias: ['JDSPORTS', 'JDSPORTS_BE'],
-        services: ['content_editor'],
-      },
-      {
-        role: 'User',
-        fascias: ['JDSPORTS'],
-        services: ['content_editor', 'email_builder'],
-      },
-      {
-        role: 'Admin',
-        fascias: ['JDSPORTS_BE'],
-        services: ['content_editor'],
-      },
-      {
-        role: 'User',
-        fascias: ['JDSPORTS'],
-        services: ['email_builder'],
-      },
-    ],
-
-    selectFilters: [
-      {
-        label: 'Role',
-        current: '',
-        options: [
-          {
-            text: 'All',
-            value: '',
-          },
-          {
-            text: 'Admin',
-            value: 'admin',
-          },
-          {
-            text: 'User',
-            value: 'user',
-          },
-        ],
-      },
-      {
-        label: 'Fascia',
-        current: '',
-        options: [
-          {
-            text: 'All',
-            value: '',
-          },
-          {
-            text: 'JD Sports (GB)',
-            value: 'JDSPORTS',
-          },
-          {
-            text: 'JD Sports (BE)',
-            value: 'JDSPORTS_BE',
-          },
-        ],
-      },
-      {
-        label: 'Service',
-        current: '',
-        options: [
-          {
-            text: 'All',
-            value: '',
-          },
-          {
-            text: 'Content Editor',
-            value: 'content_editor',
-          },
-          {
-            text: 'Email Builder',
-            value: 'email_builder',
-          },
-        ],
-      },
-    ],
+    className: 'select-filter',
   }),
 
   computed: {
@@ -138,7 +153,7 @@ export default {
     },
 
     filteredData() {
-      let filteredArray = this.items;
+      let filteredArray = this.dataToFilter;
 
       filteredArray = this.filterByValue('role', this.selectedRole, filteredArray);
       filteredArray = this.filterByValue('fascias', this.selectedFascia, filteredArray);
@@ -199,6 +214,7 @@ export default {
 </script>
 
 <style lang="scss">
+.select-filter {
   .data {
     margin: 1rem 0;
 
@@ -229,4 +245,5 @@ export default {
       }
     }
   }
+}
 </style>
