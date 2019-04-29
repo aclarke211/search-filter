@@ -79,6 +79,10 @@ export default {
             text: 'Admin',
             value: 'admin',
           },
+          {
+            text: 'User',
+            value: 'user',
+          },
         ],
       },
       {
