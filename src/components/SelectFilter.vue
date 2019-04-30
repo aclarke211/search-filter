@@ -22,13 +22,15 @@
           </div>
       </div>
 
-    <div class="filtered-data">
+    <div
+    v-if="showFilteredData"
+    class="filtered-data">
       <pre
       v-if="this.filteredData.length >= 1"
       class="filtered-data__json">{{ this.filteredData }}</pre>
-      <!-- <p
+      <p
         v-else
-        class=""></p> -->
+        class="filter-data__empty-message">{{ this.emptyMessage }}</p>
     </div>
   </div>
 </template>
@@ -132,6 +134,22 @@ export default {
           ],
         },
       ]),
+    },
+
+    /**
+    * The message which appears if no data matches the filter criteria
+    */
+    emptyMessage: {
+      type: String,
+      default: 'There are no results for the chosen filters.',
+    },
+
+    /**
+    * Toggle to show/hide the filtered data
+    */
+    showFilteredData: {
+      type: Boolean,
+      default: true,
     },
   },
 
