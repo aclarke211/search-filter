@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="title">Filter / Search</h1>
+    <h1 class="title">Select Filter</h1>
     <SelectFilter />
   </div>
 </template>
