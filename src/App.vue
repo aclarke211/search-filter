@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1 class="title">Select Filter</h1>
-    <SelectFilter />
+    <SelectFilter :dataToFilter="selectFilterData" />
   </div>
 </template>
 
@@ -14,6 +14,35 @@ export default {
   components: {
     SelectFilter,
   },
+
+  data: () => ({
+    selectFilterData: [
+      {
+        username: 'qcfwj@test.com',
+        role: 'Admin',
+        fascias: ['JDSPORTS', 'JDSPORTS_BE'],
+        services: ['content_editor'],
+      },
+      {
+        username: 'njbjkbkjedk@test.com',
+        role: 'User',
+        fascias: ['JDSPORTS'],
+        services: ['content_editor', 'email_builder'],
+      },
+      {
+        username: 'oifwmnvin@test.com',
+        role: 'Admin',
+        fascias: ['JDSPORTS_BE'],
+        services: ['content_editor'],
+      },
+      {
+        username: 'ydfmkvbdflkj@test.com',
+        role: 'User',
+        fascias: ['JDSPORTS'],
+        services: ['email_builder'],
+      },
+    ]
+  }),
 };
 </script>
 
