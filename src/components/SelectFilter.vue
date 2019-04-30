@@ -229,7 +229,14 @@ export default {
       flex-flow: column wrap;
       justify-content: center;
       margin: 1rem 0;
+      padding: .5rem;
       max-width: 100%;
+      transition: all .5s;
+
+      @media only screen and (min-width: 767px) {
+        margin: 1rem;
+        width: unset;
+      }
 
       label {
         flex: 1;
@@ -243,12 +250,10 @@ export default {
         margin: .75rem;
         max-width: 100%;
         padding: .75rem 2rem;
-        transition: all .5s;
-        width: 50%;
+        width: 15rem;
 
         @media only screen and (min-width: 767px) {
           margin: 1rem 2rem;
-          width: 15rem;
         }
       }
     }
