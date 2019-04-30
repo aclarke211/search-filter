@@ -22,8 +22,13 @@
           </div>
       </div>
 
-    <div class="filtered-data data">
-      <pre class="filtered-data__json data-json">{{ this.filteredData }}</pre>
+    <div class="filtered-data">
+      <pre
+      v-if="this.filteredData.length >= 1"
+      class="filtered-data__json">{{ this.filteredData }}</pre>
+      <!-- <p
+        v-else
+        class=""></p> -->
     </div>
   </div>
 </template>
@@ -259,13 +264,13 @@ export default {
     }
   }
 
-  .data {
+  .filtered-data {
     margin: 1rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    &-json {
+    &__json {
       font-size: .8rem;
     }
   }
