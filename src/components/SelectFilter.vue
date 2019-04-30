@@ -83,6 +83,7 @@ export default {
       default: () => ([
         {
           label: 'Role',
+          filterValue: 'role',
           current: '',
           options: [
             {
@@ -101,6 +102,7 @@ export default {
         },
         {
           label: 'Fascia',
+          filterValue: 'fascias',
           current: '',
           options: [
             {
@@ -119,6 +121,7 @@ export default {
         },
         {
           label: 'Service',
+          filterValue: 'services',
           current: '',
           options: [
             {
@@ -164,32 +167,20 @@ export default {
       return this.selectFilters;
     },
 
-    selectedRole() {
-      return this.getSelectedValue('Role');
-    },
-
-    selectedFascia() {
-      return this.getSelectedValue('Fascia');
-    },
-
-    selectedService() {
-      return this.getSelectedValue('Service');
-    },
-
     filteredData() {
       let filteredArray = this.dataToFilter;
 
-      filteredArray = this.filterByValue('role', this.selectedRole, filteredArray);
-      filteredArray = this.filterByValue('fascias', this.selectedFascia, filteredArray);
-      filteredArray = this.filterByValue('services', this.selectedService, filteredArray);
-
+      this.filters.forEach((filter) => {
+        filteredArray = this.filterByValue(filter.filterValue,
+          this.getSelectedValue(filter.label), filteredArray);
+      });
       return filteredArray;
     },
   },
 
   methods: {
     getSelectedValue(value) {
-      const toReturn = this.selectFilters.filter(selectData => selectData.label === value);
+      const toReturn = this.filters.filter(selectData => selectData.label === value);
 
       return toReturn[0].current;
     },
