@@ -261,12 +261,9 @@ export default {
 
   .data {
     margin: 1rem 0;
-
-    &-title {
-      border-bottom: 2px solid slategrey;
-      display: inline-flex;
-      padding: 0 .25rem .25rem;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &-json {
       font-size: .8rem;
