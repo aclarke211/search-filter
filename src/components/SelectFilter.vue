@@ -1,8 +1,10 @@
 <template>
   <div :class="className">
-      <div class="filters">
+      <div
+        v-if="filters"
+        class="filters">
         <div
-          v-for="(selectFilter, selectKey) in selectFilters"
+          v-for="(selectFilter, selectKey) in filters"
           :key="selectKey"
           class="select__container">
             <label :for="`select-filter-${selectKey}`">{{ selectFilter.label }}</label>
@@ -158,6 +160,10 @@ export default {
   }),
 
   computed: {
+    filters() {
+      return this.selectFilters;
+    },
+
     selectedRole() {
       return this.getSelectedValue('Role');
     },
