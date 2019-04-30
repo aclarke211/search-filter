@@ -217,6 +217,11 @@ export default {
   },
 
   searchFilter() {
+
+    /*
+    * NEED TO IMPLEMENT A SEARCH BOX FITLER
+    */
+
     // return this.search ? this.items.filter(item => {
     //     let match = false
     //     for (let key in item) {
